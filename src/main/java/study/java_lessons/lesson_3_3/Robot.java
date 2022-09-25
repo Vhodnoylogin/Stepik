@@ -6,6 +6,21 @@ public class Robot {
     protected int y;
     protected DirectionExt direction = DirectionExt.UP;
 
+    public Robot() {
+
+    }
+
+    public Robot(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Robot(int x, int y, DirectionExt direction) {
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
+    }
+
     public Direction getDirection() {
         return this.direction.getDirection();
     }
