@@ -18,6 +18,8 @@ target/
 /.idea/uiDesigner.xml
 /.idea/*
 
+*.iml
+
 ### Eclipse ###
 .apt_generated
 .classpath
