@@ -1,31 +1,52 @@
 package study.java_lessons.lesson_2_4;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Work {
     public static void main(String[] args) {
 //        System.out.println("TEST");
 
+
         String path = "E:\\IdeaProjects\\Stepik\\src\\main\\resources\\source.txt";
         try {
-            System.out.println(readFromFile(path));
+            String text = readFromFile(path);
+            System.out.println(text);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     protected static String readFromFile(String path) throws IOException {
-//        Path file = Paths.get(path);
-//        return Files.lines(file).collect(Collectors.joining("\n"));
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8));
-        try (reader) {
-            return reader.lines().collect(Collectors.joining("\n"));
+        try (Stream<String> stream = Files.lines(Paths.get(path))) {
+            return stream.collect(Collectors.joining("\n"));
         }
+
+//        try (
+//            FileInputStream fis = new FileInputStream(path);
+//            InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+//            BufferedReader reader = new BufferedReader(isr)
+//        ) {
+//            String sCurrentLine;
+//            while ((sCurrentLine = reader.readLine()) != null) {
+//                System.out.println(sCurrentLine);
+//            }
+//        }
+//
+//        try (
+//                FileReader fis = new FileReader(path);
+//                BufferedReader reader = new BufferedReader(fis)
+//        ) {
+//            String sCurrentLine;
+//            while ((sCurrentLine = reader.readLine()) != null) {
+//                System.out.println(sCurrentLine);
+//            }
+////            return reader.lines().collect(Collectors.joining("\n"));
+//        }
+
+//        return "DFDFG";
     }
 }
