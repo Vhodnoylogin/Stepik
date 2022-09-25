@@ -27,8 +27,8 @@ public class Robot {
     }
 
     public void stepForward() {
-        this.x = DirectionExt.movX(this.direction);
-        this.y = DirectionExt.movY(this.direction);
+        this.x += DirectionExt.movX(this.direction);
+        this.y += DirectionExt.movY(this.direction);
     }
 
     @Override
