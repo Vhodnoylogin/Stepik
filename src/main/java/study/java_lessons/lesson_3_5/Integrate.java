@@ -6,9 +6,12 @@ public class Integrate {
     protected static final double STEP = 1E-7;
 
     public static void main(String[] args) {
-        System.out.println(integrate(x -> 1, 0, 10));//10.0
-        System.out.println(integrate(x -> x + 2, 0, 10));//70.0
-        System.out.println(integrate(x -> Math.sin(x) / x, 1, 5));//0.603848
+//        System.out.println(integrate(x -> 1, 0, 10));//10.0
+//        System.out.println(integrate(x -> x + 2, 0, 10));//70.0
+//        System.out.println(integrate(x -> Math.sin(x) / x, 1, 5));//0.603848
+
+        System.out.println("qwerty".indexOf("wer"));
+        System.out.println("qwerty".indexOf("asd"));
     }
 
     public static double integrate(DoubleUnaryOperator f, double a, double b) {
