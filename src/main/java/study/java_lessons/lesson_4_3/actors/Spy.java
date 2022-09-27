@@ -7,11 +7,12 @@ import study.java_lessons.lesson_4_3.help.service.MailService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static study.java_lessons.lesson_4_3.Work.AUSTIN_POWERS;
 
 public class Spy implements MailService {
     protected static final String WARN_MSG = "Detected target mail correspondence: from {from} to {to} \"{message}\"";
     protected static final String INFO_MSG = "Usual correspondence: from {from} to {to}";
+
+    public static final String AUSTIN_POWERS = "Austin Powers";
     protected Logger logger;
 
     public Spy(Logger logger) {
@@ -25,15 +26,11 @@ public class Spy implements MailService {
         String from = mail.getFrom();
         String to = mail.getTo();
         if (from.indexOf(AUSTIN_POWERS) == 0 || to.indexOf(AUSTIN_POWERS) == 0) {
-            this.logger.log(
-                    Level.INFO
-                    , INFO_MSG
+            this.logger.log(Level.INFO, INFO_MSG
                     , new Object[]{from, to}
             );
         } else {
-            this.logger.log(
-                    Level.WARNING
-                    , WARN_MSG
+            this.logger.log(Level.WARNING, WARN_MSG
                     , new Object[]{from, to, ((MailMessage) mail).getMessage()}
             );
         }
