@@ -21,6 +21,10 @@ public class Main {
         out.flush();
     }
 
+    public static void main(String[] args) throws IOException {
+        convert(System.in, System.out);
+    }
+
     public static class TokenComparator {
         protected byte[] buffer;
         protected int it;
@@ -33,14 +37,15 @@ public class Main {
         }
 
         public TokenFlags getFlag() {
-            if (it == 0) return TokenFlags.CONTINUE;
+            if (it == 0) return TokenFlags.EMPTY;
             if (it == this.compareToken.length) return TokenFlags.EQUAL;
             if (this.buffer[it - 1] != this.compareToken[it - 1]) return TokenFlags.MISMATCH;
             return TokenFlags.CONTINUE;
         }
 
         public TokenFlags put(byte b) {
-            if (this.getFlag() != TokenFlags.CONTINUE) throw new RuntimeException(String.valueOf(this.getFlag()));
+            if (this.getFlag() != TokenFlags.CONTINUE && this.getFlag() != TokenFlags.EMPTY)
+                throw new RuntimeException(String.valueOf(this.getFlag()));
             this.buffer[it++] = b;
             return this.getFlag();
         }
@@ -54,6 +59,6 @@ public class Main {
             return res;
         }
 
-        public enum TokenFlags {CONTINUE, EQUAL, MISMATCH}
+        public enum TokenFlags {CONTINUE, EQUAL, MISMATCH, EMPTY}
     }
 }

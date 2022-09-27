@@ -14,8 +14,12 @@ import java.util.logging.Logger;
 
 public class TestIOStreams {
     Logger logger = Logger.getLogger(TestIOStreams.class.getName());
-    byte[] arr = new byte[]{65, 13, 10, 10, 13};
-    byte[] resEth = new byte[]{65, 10, 10, 13};
+//    byte[] arr = new byte[]{65, 13, 10, 10, 13};
+//    byte[] resEth = new byte[]{65, 10, 10, 13};
+
+    byte[] arr = {65, 66, 13, 13, 10, 10, 13, 67, 13, 13};
+    byte[] resEth = {65, 66, 13, 10, 10, 13, 67, 13, 13};
+
     Main.TokenComparator comparator = new Main.TokenComparator();
 
     @Test
@@ -29,6 +33,19 @@ public class TestIOStreams {
             Assertions.assertArrayEquals(res, resEth);
         }
     }
+
+    @Test
+    public void testEmptyStream() throws IOException {
+        try (InputStream in = new ByteArrayInputStream(new byte[0]);
+             ByteArrayOutputStream outputStream = new ByteArrayOutputStream(arr.length)
+        ) {
+            Main.convert(in, outputStream);
+            var res = outputStream.toByteArray();
+            logger.info(Arrays.toString(res) + " " + Arrays.toString(new byte[0]));
+            Assertions.assertArrayEquals(res, new byte[0]);
+        }
+    }
+
 
     @Test
     public void tstToken() {
