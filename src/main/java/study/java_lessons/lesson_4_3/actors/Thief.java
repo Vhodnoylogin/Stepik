@@ -21,6 +21,7 @@ public class Thief implements MailService {
     @Override
     public Sendable processMail(Sendable mail) {
         if (!(mail instanceof MailPackage)) return mail;
+
         Package pack = ((MailPackage) mail).getContent();
         if (pack.price() < this.minValueToStole) return mail;
 
