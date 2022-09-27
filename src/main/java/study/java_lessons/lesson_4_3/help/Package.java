@@ -1,9 +1,22 @@
 package study.java_lessons.lesson_4_3.help;
 
-/*
-Класс, который задает посылку. У посылки есть текстовое описание содержимого и целочисленная ценность.
-*/
-public record Package(String content, int price) {
+public class Package {
+    private final String content;
+    private final int price;
+
+    public Package(String content, int price) {
+        this.content = content;
+        this.price = price;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
