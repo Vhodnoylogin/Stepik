@@ -23,9 +23,9 @@ public class Inspector implements MailService {
 
         Package pack = ((MailPackage) mail).getContent();
         for (String ban : BANNED) {
-            if (pack.content().indexOf(ban) != 0) throw new IllegalPackageException();
+            if (pack.content().contains(ban)) throw new IllegalPackageException();
         }
-        if (pack.content().indexOf(STONES) != 0) throw new StolenPackageException();
+        if (pack.content().contains(STONES)) throw new StolenPackageException();
 
         return mail;
     }
