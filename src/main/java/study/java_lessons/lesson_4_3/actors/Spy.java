@@ -25,7 +25,7 @@ public class Spy implements MailService {
 
         String from = mail.getFrom();
         String to = mail.getTo();
-        if (from.indexOf(AUSTIN_POWERS) == 0 || to.indexOf(AUSTIN_POWERS) == 0) {
+        if (from.contains(AUSTIN_POWERS) || to.contains(AUSTIN_POWERS)) {
             this.logger.log(Level.INFO, INFO_MSG
                     , new Object[]{from, to}
             );
