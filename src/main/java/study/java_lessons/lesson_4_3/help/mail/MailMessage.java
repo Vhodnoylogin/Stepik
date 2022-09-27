@@ -1,4 +1,4 @@
-package study.java_lessons.lesson_4_3.help;
+package study.java_lessons.lesson_4_3.help.mail;
 
 import java.util.Objects;
 

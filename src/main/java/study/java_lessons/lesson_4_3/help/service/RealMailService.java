@@ -1,4 +1,6 @@
-package study.java_lessons.lesson_4_3.help;
+package study.java_lessons.lesson_4_3.help.service;
+
+import study.java_lessons.lesson_4_3.help.mail.Sendable;
 
 /*
 Класс, в котором скрыта логика настоящей почты

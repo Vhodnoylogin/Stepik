@@ -1,4 +1,6 @@
-package study.java_lessons.lesson_4_3.help;
+package study.java_lessons.lesson_4_3.help.mail;
+
+import study.java_lessons.lesson_4_3.help.Package;
 
 /*
 Письмо, у которого есть текст, который можно получить с помощью метода `getMessage`
