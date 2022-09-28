@@ -3,7 +3,6 @@ package study.java_lessons.lesson_5_3;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.stream.Collectors;
 
 public class InputToString {
     public static void main(String[] args) throws IOException {
@@ -12,10 +11,12 @@ public class InputToString {
     }
 
     public static String readAsString(InputStream inputStream, Charset charset) throws IOException {
-        return new BufferedReader(
-                new InputStreamReader(inputStream, charset)
-        )
-                .lines()
-                .collect(Collectors.joining(""));
+        Reader reader = new BufferedReader(new InputStreamReader(inputStream, charset));
+        StringBuilder stringBuffer = new StringBuilder();
+        int b;
+        while ((b = reader.read()) > 0) {
+            stringBuffer.append((char) b);
+        }
+        return stringBuffer.toString();
     }
 }
