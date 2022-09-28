@@ -3,6 +3,7 @@ package test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import study.java_lessons.lesson_5_2.Main;
+import study.java_lessons.lesson_5_2.TokenComparator;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -20,7 +21,8 @@ public class TestIOStreams {
     byte[] arr = {65, 66, 13, 13, 10, 10, 13, 67, 13, 13};
     byte[] resEth = {65, 66, 13, 10, 10, 13, 67, 13, 13};
 
-    Main.TokenComparator comparator = new Main.TokenComparator();
+    private static final String NEW_LINE = System.lineSeparator();
+    TokenComparator comparator = new TokenComparator();
 
     @Test
     public void testStream() throws IOException {
@@ -29,7 +31,7 @@ public class TestIOStreams {
         ) {
             Main.convert(in, outputStream);
             var res = outputStream.toByteArray();
-            logger.info(Arrays.toString(arr) + " " + Arrays.toString(res) + " " + Arrays.toString(resEth));
+            logger.info(NEW_LINE + Arrays.toString(arr) + NEW_LINE + Arrays.toString(res) + NEW_LINE + Arrays.toString(resEth));
             Assertions.assertArrayEquals(res, resEth);
         }
     }
@@ -53,62 +55,41 @@ public class TestIOStreams {
         var flag = comparator.put(arr[it++]);
         logger.info(flag.toString() + " " + comparator.getFlag().toString());
         Assertions.assertEquals(flag, comparator.getFlag());
-        if (Main.TokenComparator.TokenFlags.CONTINUE != comparator.getFlag()) {
+        if (TokenComparator.TokenFlags.CONTINUE != comparator.getFlag()) {
             logger.info(Arrays.toString(comparator.getBuffer()));
         }
 
         flag = comparator.put(arr[it++]);
         logger.info(flag.toString() + " " + comparator.getFlag().toString());
         Assertions.assertEquals(flag, comparator.getFlag());
-        if (Main.TokenComparator.TokenFlags.CONTINUE != comparator.getFlag()) {
+        if (TokenComparator.TokenFlags.CONTINUE != comparator.getFlag()) {
             logger.info(Arrays.toString(comparator.getBuffer()));
         }
 
         flag = comparator.put(arr[it++]);
         logger.info(flag.toString() + " " + comparator.getFlag().toString());
         Assertions.assertEquals(flag, comparator.getFlag());
-        if (Main.TokenComparator.TokenFlags.CONTINUE != comparator.getFlag()) {
+        if (TokenComparator.TokenFlags.CONTINUE != comparator.getFlag()) {
             logger.info(Arrays.toString(comparator.getBuffer()));
         }
 
         flag = comparator.put(arr[it++]);
         logger.info(flag.toString() + " " + comparator.getFlag().toString());
         Assertions.assertEquals(flag, comparator.getFlag());
-        if (Main.TokenComparator.TokenFlags.CONTINUE != comparator.getFlag()) {
+        if (TokenComparator.TokenFlags.CONTINUE != comparator.getFlag()) {
             logger.info(Arrays.toString(comparator.getBuffer()));
         }
 
         flag = comparator.put(arr[it++]);
         logger.info(flag.toString() + " " + comparator.getFlag().toString());
         Assertions.assertEquals(flag, comparator.getFlag());
-        if (Main.TokenComparator.TokenFlags.CONTINUE != comparator.getFlag()) {
+        if (TokenComparator.TokenFlags.CONTINUE != comparator.getFlag()) {
             logger.info(Arrays.toString(comparator.getBuffer()));
         }
 
-        if (Main.TokenComparator.TokenFlags.CONTINUE == comparator.getFlag()) {
+        if (TokenComparator.TokenFlags.CONTINUE == comparator.getFlag()) {
             logger.info(Arrays.toString(comparator.getBuffer()));
         }
     }
 
-    @Test
-    public void testLoopToken() {
-        var comparator = new Main.TokenComparator();
-        byte[] res = new byte[0];
-        for (int b : arr) {
-            if (Main.TokenComparator.TokenFlags.CONTINUE != comparator.put((byte) b)) {
-                for (byte b1 : comparator.getBuffer()) {
-                    res = Arrays.copyOf(res, res.length + 1);
-                    res[res.length - 1] = b1;
-                }
-            }
-        }
-        if (Main.TokenComparator.TokenFlags.CONTINUE == comparator.getFlag()) {
-            for (byte b1 : comparator.getBuffer()) {
-                res = Arrays.copyOf(res, res.length + 1);
-                res[res.length - 1] = b1;
-            }
-        }
-        logger.info(Arrays.toString(res) + " " + Arrays.toString(resEth));
-        Assertions.assertArrayEquals(res, resEth);
-    }
 }
