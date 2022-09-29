@@ -4,7 +4,7 @@ package study.java_lessons.lesson_5_4;
 import java.io.Serializable;
 import java.util.Objects;
 
-class Animal implements Serializable {
+public class Animal implements Serializable {
     private final String name;
 
     public Animal(String name) {
