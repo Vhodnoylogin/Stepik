@@ -12,7 +12,12 @@ public class FinalExam {
     }
 
     public static class MailService<T> implements Consumer<Msg<T>> {
-        private final Map<String, List<T>> mailBox = new MapOfLists<>();
+        private final Map<String, List<T>> mailBox = new HashMap<>() {
+            @Override
+            public List<T> get(Object key) {
+                return super.getOrDefault(key, Collections.emptyList());
+            }
+        };
 
         @Override
         public void accept(Msg<T> msg) {
@@ -23,14 +28,6 @@ public class FinalExam {
 
         public Map<String, List<T>> getMailBox() {
             return mailBox;
-        }
-
-    }
-
-    static class MapOfLists<T> extends HashMap<String, List<T>> {
-        @Override
-        public List<T> get(Object key) {
-            return super.getOrDefault(key, Collections.emptyList());
         }
     }
 
