@@ -1,9 +1,7 @@
 package test.lesson_6_4.final_exam;
 
 import org.junit.jupiter.api.Test;
-import study.java_lessons.lesson_6_4.final_exam.MailMessage;
-import study.java_lessons.lesson_6_4.final_exam.MailService;
-import study.java_lessons.lesson_6_4.final_exam.Salary;
+import study.java_lessons.lesson_6_4.final_exam.FinalExam;
 import test.TestClass;
 
 import java.util.Arrays;
@@ -20,7 +18,7 @@ public class TestFinalExam extends TestClass {
     @Test
     public void test1() {
         // Создание списка из трех почтовых сообщений.
-        MailMessage firstMessage = new MailMessage(
+        FinalExam.MailMessage firstMessage = new FinalExam.MailMessage(
                 "Robert Howard",
                 "H.P. Lovecraft",
                 "This \"The Shadow over Innsmouth\" story is real masterpiece, Howard!"
@@ -33,30 +31,30 @@ public class TestFinalExam extends TestClass {
 
     @Test
     public void test2() {
-        MailMessage firstMessage = new MailMessage(
+        FinalExam.MailMessage firstMessage = new FinalExam.MailMessage(
                 "Robert Howard",
                 "H.P. Lovecraft",
                 "This \"The Shadow over Innsmouth\" story is real masterpiece, Howard!"
         );
 
-        MailMessage secondMessage = new MailMessage(
+        FinalExam.MailMessage secondMessage = new FinalExam.MailMessage(
                 "Jonathan Nolan",
                 "Christopher Nolan",
                 "Брат, почему все так хвалят только тебя, когда практически все сценарии написал я. Так не честно!"
         );
 
-        MailMessage thirdMessage = new MailMessage(
+        FinalExam.MailMessage thirdMessage = new FinalExam.MailMessage(
                 "Stephen Hawking",
                 "Christopher Nolan",
                 "Я так и не понял Интерстеллар."
         );
 
-        List<MailMessage> messages = Arrays.asList(
+        List<FinalExam.MailMessage> messages = Arrays.asList(
                 firstMessage, secondMessage, thirdMessage
         );
 
         // Создание почтового сервиса.
-        MailService<String> mailService = new MailService<>();
+        FinalExam.MailService<String> mailService = new FinalExam.MailService<>();
 
         // Обработка списка писем почтовым сервисом
         messages.forEach(mailService);
@@ -84,12 +82,12 @@ public class TestFinalExam extends TestClass {
     @Test
     public void test3() {
         // Создание списка из трех зарплат.
-        Salary salary1 = new Salary("Facebook", "Mark Zuckerberg", 1);
-        Salary salary2 = new Salary("FC Barcelona", "Lionel Messi", Integer.MAX_VALUE);
-        Salary salary3 = new Salary(randomFrom, randomTo, randomSalary);
+        FinalExam.Salary salary1 = new FinalExam.Salary("Facebook", "Mark Zuckerberg", 1);
+        FinalExam.Salary salary2 = new FinalExam.Salary("FC Barcelona", "Lionel Messi", Integer.MAX_VALUE);
+        FinalExam.Salary salary3 = new FinalExam.Salary(randomFrom, randomTo, randomSalary);
 
         // Создание почтового сервиса, обрабатывающего зарплаты.
-        MailService<Integer> salaryService = new MailService<>();
+        FinalExam.MailService<Integer> salaryService = new FinalExam.MailService<>();
 
         // Обработка списка зарплат почтовым сервисом
         Arrays.asList(salary1, salary2, salary3).forEach(salaryService);
